@@ -217,6 +217,9 @@ public class Home extends javax.swing.JFrame {
 
         jpOrder.setBackground(new java.awt.Color(25, 118, 211));
         jpOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpOrderMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jpOrderMousePressed(evt);
             }
@@ -228,6 +231,11 @@ public class Home extends javax.swing.JFrame {
         btnOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/popupicon/create_order_30px.png"))); // NOI18N
         btnOrder.setText("   ORDER");
         btnOrder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOrderMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpOrderLayout = new javax.swing.GroupLayout(jpOrder);
         jpOrder.setLayout(jpOrderLayout);
@@ -569,6 +577,41 @@ public class Home extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void btnOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOrderMouseClicked
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(clickedColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        Order order = new Order();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(order).setVisible(true);
+    }//GEN-LAST:event_btnOrderMouseClicked
+
+    private void jpOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpOrderMouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(clickedColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        Order order = new Order();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(order).setVisible(true);
+    }//GEN-LAST:event_jpOrderMouseClicked
 
     /**
      * @param args the command line arguments

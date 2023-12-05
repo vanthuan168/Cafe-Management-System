@@ -297,6 +297,8 @@ public class EditDeleteProduct extends javax.swing.JFrame {
         while (itr.hasNext()) {
             Product productObj = itr.next();
             dtm.addRow(new Object[]{productObj.getId(), productObj.getName(), productObj.getCategory(), formatter.format(Double.parseDouble(productObj.getPrice()))});
+//            dtm.addRow(new Object[]{productObj.getId(), productObj.getName(), productObj.getCategory(), productObj.getPrice()});
+
         }
 
     }//GEN-LAST:event_formComponentShown
@@ -334,6 +336,7 @@ public class EditDeleteProduct extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(EditDeleteProduct.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        txtPrice.setText(price);
         ArrayList<Category> list = CategoryDao.getAllRecords();
         Iterator<Category> itr = list.iterator();
         while (itr.hasNext()) {
