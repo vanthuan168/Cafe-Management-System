@@ -289,6 +289,9 @@ public class Home extends javax.swing.JFrame {
 
         jpUser.setBackground(new java.awt.Color(25, 118, 211));
         jpUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpUserMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jpUserMousePressed(evt);
             }
@@ -300,6 +303,11 @@ public class Home extends javax.swing.JFrame {
         btnUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/popupicon/user_30px.png"))); // NOI18N
         btnUser.setText("   USER");
         btnUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUserMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpUserLayout = new javax.swing.GroupLayout(jpUser);
         jpUser.setLayout(jpUserLayout);
@@ -612,6 +620,40 @@ public class Home extends javax.swing.JFrame {
         jDesktopPane.removeAll();
         jDesktopPane.add(order).setVisible(true);
     }//GEN-LAST:event_jpOrderMouseClicked
+
+    private void btnUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserMouseClicked
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(clickedColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        VerifyUser verifyUser = new VerifyUser();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(verifyUser).setVisible(true);
+    }//GEN-LAST:event_btnUserMouseClicked
+
+    private void jpUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpUserMouseClicked
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(clickedColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        VerifyUser verifyUser = new VerifyUser();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(verifyUser).setVisible(true);
+    }//GEN-LAST:event_jpUserMouseClicked
 
     /**
      * @param args the command line arguments
