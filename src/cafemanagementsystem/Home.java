@@ -598,7 +598,7 @@ public class Home extends javax.swing.JFrame {
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
         
-        Order order = new Order();
+        Order order = new Order(email);
         jDesktopPane.removeAll();
         jDesktopPane.add(order).setVisible(true);
     }//GEN-LAST:event_btnOrderMouseClicked
@@ -616,7 +616,7 @@ public class Home extends javax.swing.JFrame {
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
         
-        Order order = new Order();
+        Order order = new Order(email);
         jDesktopPane.removeAll();
         jDesktopPane.add(order).setVisible(true);
     }//GEN-LAST:event_jpOrderMouseClicked
