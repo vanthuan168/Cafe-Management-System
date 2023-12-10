@@ -34,5 +34,69 @@ public class BillDao {
         DbOperations.setDataOrDelete(query, "Thêm hóa đơn thành công!");
     }
     
+    public static ArrayList<Bill> getAllRecordsByInc(String startDate, String endDate){
+        ArrayList<Bill> arrayList = new ArrayList<>();
+        try {
+            ResultSet rs = DbOperations.getData("select * from bill where date between '"+startDate+"' and '"+endDate+"' order by id ASC");
+            while(rs.next()){
+                Bill bill = new Bill();
+                bill.setId(rs.getInt("id"));
+                bill.setName(rs.getString("name"));
+                bill.setMobileNumber(rs.getString("mobileNumber"));
+                bill.setEmail(rs.getString("email"));
+                bill.setDate(rs.getString("date"));
+                bill.setTotal(rs.getString("total"));
+                bill.setCreatedBy(rs.getString("createdBy"));
+                arrayList.add(bill);
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    public static ArrayList<Bill> getAllRecordsByDesc(String startDate, String endDate){
+        ArrayList<Bill> arrayList = new ArrayList<>();
+        try {
+            ResultSet rs = DbOperations.getData("select * from bill where date between '"+startDate+"' and '"+endDate+"' order by id DESC");
+            while(rs.next()){
+                Bill bill = new Bill();
+                bill.setId(rs.getInt("id"));
+                bill.setName(rs.getString("name"));
+                bill.setMobileNumber(rs.getString("mobileNumber"));
+                bill.setEmail(rs.getString("email"));
+                bill.setDate(rs.getString("date"));
+                bill.setTotal(rs.getString("total"));
+                bill.setCreatedBy(rs.getString("createdBy"));
+                arrayList.add(bill);
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    
+//    public static ArrayList<Bill> getAllRecordsByTotalDesc(String startDate, String endDate){
+//        ArrayList<Bill> arrayList = new ArrayList<>();
+//        try {
+//            ResultSet rs = DbOperations.getData("select * from bill where date between '"+startDate+"' and '"+endDate+"' order by total DESC");
+//            while(rs.next()){
+//                Bill bill = new Bill();
+//                bill.setId(rs.getInt("id"));
+//                bill.setName(rs.getString("name"));
+//                bill.setMobileNumber(rs.getString("mobileNumber"));
+//                bill.setEmail(rs.getString("email"));
+//                bill.setDate(rs.getString("date"));
+//                bill.setTotal(rs.getString("total"));
+//                bill.setCreatedBy(rs.getString("createdBy"));
+//                arrayList.add(bill);
+//                
+//            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//        return arrayList;
+//    }
     
 }

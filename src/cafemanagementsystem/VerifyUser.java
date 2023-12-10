@@ -25,7 +25,7 @@ public class VerifyUser extends javax.swing.JInternalFrame {
      */
     public VerifyUser() {
         initComponents();
-        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 1, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
     }
@@ -39,7 +39,7 @@ public class VerifyUser extends javax.swing.JInternalFrame {
             User userObj = itr.next();
             if (!userObj.getEmail().equals("admin@gmail.com")) {
                 String status = "";
-                if(userObj.getStatus().equals("true")){
+                if (userObj.getStatus().equals("true")) {
                     status = "Đang hoạt động";
                 } else {
                     status = "Không hoạt động";
@@ -119,8 +119,8 @@ public class VerifyUser extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(25, 118, 211));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("XÁC MINH TÀI KHOẢN");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 370, 50));
+        jLabel2.setText("CẬP NHẬT TRẠNG THÁI TÀI KHOẢN");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 490, 50));
 
         jLabel3.setText("jLabel3");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
@@ -164,7 +164,7 @@ public class VerifyUser extends javax.swing.JInternalFrame {
         TableModel model = rSTableMetro1.getModel();
         String email = model.getValueAt(index, 2).toString();
         String status = model.getValueAt(index, 6).toString();
-        if (status.equals("true")) {
+        if (status.equals("Đang hoạt động")) {
             status = "false";
         } else {
             status = "true";
@@ -176,8 +176,13 @@ public class VerifyUser extends javax.swing.JInternalFrame {
 //            setVisible(false);
             DefaultTableModel dtm = (DefaultTableModel) rSTableMetro1.getModel();
             dtm.setRowCount(0);
-            revalidate();
-            repaint();
+            String email1 = txtEmail.getText();
+            getAllRecords(email1);
+//            getAllRecords(email);
+//            revalidate();
+//            repaint();
+//            dispose();
+//            new VerifyUser().setVisible(true);
 //            done();
         }
     }//GEN-LAST:event_rSTableMetro1MouseClicked

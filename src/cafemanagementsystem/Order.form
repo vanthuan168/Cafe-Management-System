@@ -254,6 +254,9 @@
                   </Table>
                 </Property>
                 <Property name="altoHead" type="int" value="30"/>
+                <Property name="colorFilasBackgound2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -455,6 +458,9 @@
                   </Table>
                 </Property>
                 <Property name="altoHead" type="int" value="30"/>
+                <Property name="colorFilasBackgound2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -508,7 +514,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="560" y="560" width="90" height="30"/>
+              <AbsoluteConstraints x="590" y="560" width="90" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -521,7 +527,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="670" y="560" width="170" height="30"/>
+              <AbsoluteConstraints x="710" y="560" width="170" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -614,6 +620,9 @@
                   </Table>
                 </Property>
                 <Property name="altoHead" type="int" value="30"/>
+                <Property name="colorFilasBackgound2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">

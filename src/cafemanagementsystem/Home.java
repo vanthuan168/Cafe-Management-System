@@ -257,6 +257,9 @@ public class Home extends javax.swing.JFrame {
 
         jpBill.setBackground(new java.awt.Color(25, 118, 211));
         jpBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpBillMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jpBillMousePressed(evt);
             }
@@ -268,6 +271,11 @@ public class Home extends javax.swing.JFrame {
         btnBill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/popupicon/purchase_order_30px.png"))); // NOI18N
         btnBill.setText("   HÓA ĐƠN");
         btnBill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBillMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpBillLayout = new javax.swing.GroupLayout(jpBill);
         jpBill.setLayout(jpBillLayout);
@@ -654,6 +662,40 @@ public class Home extends javax.swing.JFrame {
         jDesktopPane.removeAll();
         jDesktopPane.add(verifyUser).setVisible(true);
     }//GEN-LAST:event_jpUserMouseClicked
+
+    private void btnBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBillMouseClicked
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(clickedColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        ViewBill viewBill = new ViewBill();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(viewBill).setVisible(true);
+    }//GEN-LAST:event_btnBillMouseClicked
+
+    private void jpBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBillMouseClicked
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(clickedColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        ViewBill viewBill = new ViewBill();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(viewBill).setVisible(true);
+    }//GEN-LAST:event_jpBillMouseClicked
 
     /**
      * @param args the command line arguments

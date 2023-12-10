@@ -184,11 +184,11 @@
               <Color blue="d3" green="76" red="19" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="X&#xc1;C MINH T&#xc0;I KHO&#x1ea2;N"/>
+            <Property name="text" type="java.lang.String" value="C&#x1eac;P NH&#x1eac;T TR&#x1ea0;NG TH&#xc1;I T&#xc0;I KHO&#x1ea2;N"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="340" y="50" width="370" height="50"/>
+              <AbsoluteConstraints x="310" y="50" width="490" height="50"/>
             </Constraint>
           </Constraints>
         </Component>

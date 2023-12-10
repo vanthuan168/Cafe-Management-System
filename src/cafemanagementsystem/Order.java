@@ -145,10 +145,10 @@ public class Order extends javax.swing.JInternalFrame {
 
         if (!customerName.equals("") && !customerEmail.equals("") && customerEmail.matches(emailPattern) && !customerMobileNumber.equals("") && customerMobileNumber.matches(mobileNumberPatern) && customerMobileNumber.length() == 10 && grandTotal > 0) {
             btnGenerateBillPrint.setEnabled(true);
-            btnAddCustomer.setEnabled(true);
+//            btnAddCustomer.setEnabled(true);
         } else {
             btnGenerateBillPrint.setEnabled(false);
-            btnAddCustomer.setEnabled(false);
+//            btnAddCustomer.setEnabled(false);
 
         }
     }
@@ -288,6 +288,7 @@ public class Order extends javax.swing.JInternalFrame {
             }
         ));
         rSTableMetro1.setAltoHead(30);
+        rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         rSTableMetro1.setFuenteFilas(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rSTableMetro1.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rSTableMetro1.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -366,6 +367,7 @@ public class Order extends javax.swing.JInternalFrame {
             }
         ));
         rSTableMetro2.setAltoHead(30);
+        rSTableMetro2.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         rSTableMetro2.setFuenteFilas(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rSTableMetro2.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rSTableMetro2.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -381,11 +383,11 @@ public class Order extends javax.swing.JInternalFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel15.setText("Tổng cộng:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 560, 90, 30));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, 90, 30));
 
         lbGrandTotal.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         lbGrandTotal.setText("000");
-        jPanel1.add(lbGrandTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, 170, 30));
+        jPanel1.add(lbGrandTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 560, 170, 30));
 
         btnAddToCart.setBackground(new java.awt.Color(25, 118, 211));
         btnAddToCart.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
@@ -425,6 +427,7 @@ public class Order extends javax.swing.JInternalFrame {
             }
         ));
         rSTableMetro4.setAltoHead(30);
+        rSTableMetro4.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         rSTableMetro4.setFuenteFilas(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rSTableMetro4.setFuenteFilasSelect(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rSTableMetro4.setFuenteHead(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -593,7 +596,7 @@ public class Order extends javax.swing.JInternalFrame {
             doc.add(starLine);
             Paragraph paragraph3 = new Paragraph("\tID Hóa Đơn: " + billId
                     + "\nKhách hàng: " + customerName + " - " + customerPhoneNumber
-                    + "\nTổng thanh toán: " + grandTotal
+                    
                     + "\nNhân viên: " + createdBy, textFont);
 
             doc.add(paragraph3);
@@ -616,8 +619,10 @@ public class Order extends javax.swing.JInternalFrame {
 
             }
             doc.add(tb1);
+            Paragraph paragraph4 = new Paragraph("\nTổng thanh toán: " + grandTotal, textFont);
+            doc.add(paragraph4);
             doc.add(starLine);
-            Paragraph thankMsg = new Paragraph("Cảm ơn quý khách!", textFont);
+            Paragraph thankMsg = new Paragraph("\nCảm ơn quý khách!", textFont);
             doc.add(thankMsg);
 
 //            Mở file pdf

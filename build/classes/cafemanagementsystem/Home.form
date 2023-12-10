@@ -284,6 +284,7 @@
             </Property>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpBillMouseClicked"/>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpBillMousePressed"/>
           </Events>
           <Constraints>
@@ -329,6 +330,9 @@
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBillMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
