@@ -369,6 +369,9 @@ public class Home extends javax.swing.JFrame {
 
         jpAccount.setBackground(new java.awt.Color(25, 118, 211));
         jpAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpAccountMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jpAccountMousePressed(evt);
             }
@@ -380,6 +383,11 @@ public class Home extends javax.swing.JFrame {
         btnAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/popupicon/edit_account_30px.png"))); // NOI18N
         btnAccount.setText("   TÀI KHOẢN");
         btnAccount.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAccountMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpAccountLayout = new javax.swing.GroupLayout(jpAccount);
         jpAccount.setLayout(jpAccountLayout);
@@ -696,6 +704,42 @@ public class Home extends javax.swing.JFrame {
         jDesktopPane.removeAll();
         jDesktopPane.add(viewBill).setVisible(true);
     }//GEN-LAST:event_jpBillMouseClicked
+
+    private void btnAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccountMouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(clickedColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        Account ac = new Account(email);
+        jDesktopPane.removeAll();
+        jDesktopPane.add(ac).setVisible(true);
+    }//GEN-LAST:event_btnAccountMouseClicked
+
+    private void jpAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAccountMouseClicked
+
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(clickedColor);
+        jpChart.setBackground(defaultColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+        
+        Account ac = new Account(email);
+        jDesktopPane.removeAll();
+        jDesktopPane.add(ac).setVisible(true);
+    }//GEN-LAST:event_jpAccountMouseClicked
 
     /**
      * @param args the command line arguments

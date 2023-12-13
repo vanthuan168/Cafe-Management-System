@@ -89,4 +89,35 @@ public class UserDao {
         String query = "update user set status ='"+status+"' where email='"+email+"'";
         DbOperations.setDataOrDelete(query, "Thay đổi trạng thái tài khoản thành công!");
     }
+    
+    public static void changePassword(String email, String oldPassword, String newPassword){
+        try {
+            ResultSet rs = DbOperations.getData("select * from user where email='"+email+"' and password ='"+oldPassword+"'");
+            if(rs.next()){
+                updatePassword(email, newPassword);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Mật khẩu cũ không đúng!");
+            }
+        } catch (Exception e) {
+        }
+    }
+    
+    public static void changeSecurityQuestion(String email, String password, String securityQuestion, String ans){
+        try {
+            ResultSet rs = DbOperations.getData("select * from user where email='"+email+"' and password='"+password+"'");
+            if(rs.next()){
+                updateSecurityQuestion(email, securityQuestion, ans);
+            } else {
+                JOptionPane.showMessageDialog(null, "Mật khẩu không đúng !");
+            }
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null,e);
+        }
+    }
+    
+    public static void updateSecurityQuestion(String email, String securityQuestion, String answer){
+        String query = "update user set securityQuestion ='"+securityQuestion+"', answer = '"+answer+"' where email='"+email+"'";
+        DbOperations.setDataOrDelete(query, "Thay đổi câu hỏi bảo mật thành công!");
+    }
 }
