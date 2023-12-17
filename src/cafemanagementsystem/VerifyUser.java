@@ -48,7 +48,7 @@ public class VerifyUser extends javax.swing.JInternalFrame {
             }
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -149,6 +149,23 @@ public class VerifyUser extends javax.swing.JInternalFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel) rSTableMetro1.getModel();
+        dtm.setRowCount(0);
+        ArrayList<User> list = UserDao.getAllRecordsUser();
+        Iterator<User> itr = list.iterator();
+        while (itr.hasNext()) {
+            User userObj = itr.next();
+            if (!userObj.getEmail().equals("admin@gmail.com")) {
+                String status = "";
+                if (userObj.getStatus().equals("true")) {
+                    status = "Đang hoạt động";
+                } else {
+                    status = "Không hoạt động";
+                }
+                dtm.addRow(new Object[]{userObj.getId(), userObj.getName(), userObj.getEmail(), userObj.getMobileNumber(), userObj.getAddress(), userObj.getSecurityQuestion(), status});
+            }
+        }
+        
 
     }//GEN-LAST:event_formComponentShown
 

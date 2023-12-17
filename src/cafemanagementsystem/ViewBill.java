@@ -8,6 +8,7 @@ import common.OpenPdf;
 import dao.BillDao;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -32,11 +33,20 @@ public class ViewBill extends javax.swing.JInternalFrame {
 
         SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
-        String todayDate = dFormat.format(date);
+        
+        // Chuyển đổi thành đối tượng Calendar
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
 
+        // Đặt ngày là ngày đầu tiên của tháng
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+
+        // Lấy ngày đầu tiên của tháng
+        Date firstDayOfMonth = calendar.getTime();
+        
         txtStartDate.setDateFormatString("dd-MM-yyyy");
         txtEndDate.setDateFormatString("dd-MM-yyyy");
-        txtStartDate.setDate(date);
+        txtStartDate.setDate(firstDayOfMonth);
         txtEndDate.setDate(date);
         tableDetails();
     }

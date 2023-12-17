@@ -14,17 +14,17 @@ import java.sql.*;
  * @author thuan
  */
 public class ProductDao {
-    
-    public static void addProduct(Product product){
-        String query = "insert into product(name, category, price) values('"+product.getName()+"','"+product.getCategory()+"','"+product.getPrice()+"')";
+
+    public static void addProduct(Product product) {
+        String query = "insert into product(name, category, price) values('" + product.getName() + "','" + product.getCategory() + "','" + product.getPrice() + "')";
         DbOperations.setDataOrDelete(query, "Thêm sản phẩm thành công!");
     }
-    
-    public static ArrayList getAllRecords(){
+
+    public static ArrayList getAllRecords() {
         ArrayList<Product> arrayList = new ArrayList<>();
         try {
             ResultSet rs = DbOperations.getData("select* from product");
-            while(rs.next()){
+            while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("name"));
@@ -32,28 +32,28 @@ public class ProductDao {
                 product.setPrice(rs.getString("price"));
                 arrayList.add(product);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return arrayList;
     }
-    
-    public static void update(Product product){
-        String query = "update product set name='"+product.getName()+"', category='"+product.getCategory()+"', price='"+product.getPrice()+"' where id='"+product.getId()+"'";
+
+    public static void update(Product product) {
+        String query = "update product set name='" + product.getName() + "', category='" + product.getCategory() + "', price='" + product.getPrice() + "' where id='" + product.getId() + "'";
         DbOperations.setDataOrDelete(query, "Sửa sản phẩm thành công");
     }
-    
-    public static void delete(String id){
-        String query = "delete from product where id='"+id+"'";
+
+    public static void delete(String id) {
+        String query = "delete from product where id='" + id + "'";
         DbOperations.setDataOrDelete(query, "Xóa sản phẩm thành công");
     }
-    
-    public static ArrayList<Product> getAllRecordByCategory(String category){
+
+    public static ArrayList<Product> getAllRecordByCategory(String category) {
         ArrayList<Product> arrayList = new ArrayList<>();
         try {
-            ResultSet rs = DbOperations.getData("select * from product where category='"+category+"'");
-            while(rs.next()){
+            ResultSet rs = DbOperations.getData("select * from product where category='" + category + "'");
+            while (rs.next()) {
                 Product product = new Product();
                 product.setName(rs.getString("name"));
                 arrayList.add(product);
@@ -63,12 +63,12 @@ public class ProductDao {
         }
         return arrayList;
     }
-    
-    public static ArrayList<Product> filterProductByName(String name,String category){
+
+    public static ArrayList<Product> filterProductByName(String name, String category) {
         ArrayList<Product> arrayList = new ArrayList<>();
         try {
-            ResultSet rs = DbOperations.getData("select * from product where name like'%"+name+"%' and category='"+category+"'");
-            while(rs.next()){
+            ResultSet rs = DbOperations.getData("select * from product where name like'%" + name + "%' and category='" + category + "'");
+            while (rs.next()) {
                 Product product = new Product();
                 product.setName(rs.getString("name"));
                 arrayList.add(product);
@@ -78,12 +78,12 @@ public class ProductDao {
         }
         return arrayList;
     }
-    
-    public static Product getProductByName(String name){
+
+    public static Product getProductByName(String name) {
         Product product = new Product();
         try {
-            ResultSet rs = DbOperations.getData("select * from product where name='"+name+"'");
-            while(rs.next()){
+            ResultSet rs = DbOperations.getData("select * from product where name='" + name + "'");
+            while (rs.next()) {
                 product.setName(rs.getString(2));
                 product.setCategory(rs.getString(3));
                 product.setPrice(rs.getString(4));
@@ -92,5 +92,14 @@ public class ProductDao {
             JOptionPane.showMessageDialog(null, e);
         }
         return product;
+    }
+
+    public static int countProduct() throws SQLException{
+        ResultSet rs = DbOperations.getData("select COUNT(*) AS count_products from product");
+        int count = 0;
+        if(rs.next()){
+            count = rs.getInt("count_products");
+        }
+        return count;
     }
 }

@@ -4,7 +4,21 @@
  */
 package cafemanagementsystem;
 
+import dao.BillDao;
+import dao.ProductDao;
+import dao.UserDao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import java.sql.*;
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
+import model.User;
 
 /**
  *
@@ -21,7 +35,53 @@ public class Dashboard extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI)this.getUI();
         ui.setNorthPane(null);
     }
+    
+    public int getMonthCurrent(){
+         // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
 
+        // Lấy tháng 
+        int month = currentDate.getMonthValue();
+//        int year = currentDate.getYear();
+
+        // Định dạng ngày theo "dd-MM-yyyy" để in ra kiểm tra
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = currentDate.format(formatter);
+        
+        return month;
+    }
+    public int getYearCurrent(){
+          // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+
+        // Lấy tháng 
+        int year = currentDate.getYear();
+
+        // Định dạng ngày theo "dd-MM-yyyy" để in ra kiểm tra
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = currentDate.format(formatter);
+        
+        return year;
+    }
+    
+    public void getAllRecordsUser(){
+        DefaultTableModel dtm = (DefaultTableModel) rSTableMetro1.getModel();
+        dtm.setRowCount(0);
+        ArrayList<User> list = UserDao.getAllRecordsUser();
+        Iterator<User> itr = list.iterator();
+        while(itr.hasNext()){
+            User userObj = itr.next();
+            if(!userObj.getEmail().equals("admin@gmail.com")){
+                String status = "";
+                if (userObj.getStatus().equals("true")) {
+                    status = "Đang hoạt động";
+                } else {
+                    status = "Không hoạt động";
+                }
+                dtm.addRow(new Object[]{userObj.getId(), userObj.getName(), userObj.getEmail(), userObj.getMobileNumber(),status});
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,16 +93,27 @@ public class Dashboard extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        txtCountProduct = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        txtCountBill = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         rSTableMetro1 = new rojeru_san.complementos.RSTableMetro();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1068, 560));
@@ -52,9 +123,13 @@ public class Dashboard extends javax.swing.JInternalFrame {
         jPanel10.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(0, 204, 51)));
         jPanel10.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("1000");
+        txtCountProduct.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        txtCountProduct.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtCountProduct.setText("1000");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("* Số lượng sản phẩm hiện tại");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -62,102 +137,116 @@ public class Dashboard extends javax.swing.JInternalFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCountProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(txtCountProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, 110));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("ORDER");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 232, 20));
+        jLabel4.setText("DANH SÁCH USER");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 232, 20));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("DOANH THU");
+        jLabel6.setText("HÓA ĐƠN");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 230, 20));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(255, 0, 0)));
         jPanel5.setPreferredSize(new java.awt.Dimension(229, 115));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("1000");
+        txtCountBill.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        txtCountBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtCountBill.setText("1000");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("* Số hóa đơn tháng hiện tại");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(txtCountBill, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(txtCountBill, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 230, 110));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("USER");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 230, 20));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createMatteBorder(15, 1, 1, 1, new java.awt.Color(153, 0, 153)));
         jPanel9.setPreferredSize(new java.awt.Dimension(229, 115));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("1000");
+        txtTotal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        txtTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtTotal.setText("1000");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("* Tổng doanh thu tháng hiện tại");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 230, 110));
 
         rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null, null},
-                {"2", null, null, null},
-                {"3", null, null, null},
-                {"4", null, null, null},
-                {"5", null, null, null},
-                {"6", null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Họ và tên", "Email", "Số điện thoại", "Trạng thái"
+                "ID", "Họ và tên", "Email", "Số điện thoại", "Trạng thái"
             }
         ));
+        rSTableMetro1.setAltoHead(40);
         rSTableMetro1.setColorBackgoundHead(new java.awt.Color(25, 118, 211));
         rSTableMetro1.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
         rSTableMetro1.setColorFilasForeground1(new java.awt.Color(25, 118, 211));
@@ -170,7 +259,23 @@ public class Dashboard extends javax.swing.JInternalFrame {
         rSTableMetro1.setRowHeight(30);
         jScrollPane2.setViewportView(rSTableMetro1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 910, 230));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 910, 230));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel10.setText("SẢN PHẨM");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 232, 20));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel11.setText("DOANH THU");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 230, 20));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(25, 118, 211));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("DASHBOARD");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 380, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,19 +293,44 @@ public class Dashboard extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        int countProduct;
+        int countBill;
+        int sumBill;
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        try {
+            countProduct = ProductDao.countProduct();
+            txtCountProduct.setText(countProduct+"");
+            countBill = BillDao.countBillByMonthYear(Integer.toString(getMonthCurrent()), Integer.toString(getYearCurrent()));
+            txtCountBill.setText(countBill+"");
+            sumBill = BillDao.sumBillByMonthYear(Integer.toString(getMonthCurrent()), Integer.toString(getYearCurrent()));
+            txtTotal.setText(formatter.format((double)sumBill));
+            getAllRecordsUser();
+        } catch (SQLException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_formComponentShown
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private rojeru_san.complementos.RSTableMetro rSTableMetro1;
+    private javax.swing.JLabel txtCountBill;
+    private javax.swing.JLabel txtCountProduct;
+    private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
 }

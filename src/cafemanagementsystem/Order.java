@@ -133,7 +133,7 @@ public class Order extends javax.swing.JInternalFrame {
     public void clearProductFields() {
         txtProductName.setText("");
         txtProductPrice.setText("");
-        txtQuanlity.setValue(1);
+        txtQuanlity.setValue(0);
         txtProductTotal.setText("");
         btnAddToCart.setEnabled(false);
     }
@@ -320,6 +320,7 @@ public class Order extends javax.swing.JInternalFrame {
         jLabel12.setText("Số lượng");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 80, -1));
 
+        txtQuanlity.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtQuanlity.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 txtQuanlityStateChanged(evt);

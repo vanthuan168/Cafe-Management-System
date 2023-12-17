@@ -92,6 +92,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         btnSearch = new javax.swing.JLabel();
         txtSecurityQuestion = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -222,6 +223,17 @@ public class ForgotPassword extends javax.swing.JFrame {
         });
         jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 100, 40));
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("X");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 40, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 0, 610, 432));
 
         pack();
@@ -298,6 +310,12 @@ public class ForgotPassword extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSecurityQuestionActionPerformed
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -345,6 +363,7 @@ public class ForgotPassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtAnswer;
     private javax.swing.JPasswordField txtConfirmPassword;

@@ -13,17 +13,19 @@ import javax.swing.JOptionPane;
  * @author thuan
  */
 public class Home extends javax.swing.JFrame {
+
     Color defaultColor, clickedColor;
     private String email;
+
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
         setLocationRelativeTo(null);
-        defaultColor = new Color(25,118,211);
-        clickedColor = new Color(0,51,153);
-        
+        defaultColor = new Color(25, 118, 211);
+        clickedColor = new Color(0, 51, 153);
+
 //        set 
         jpDashboard.setBackground(clickedColor);
         jpOrder.setBackground(defaultColor);
@@ -38,14 +40,14 @@ public class Home extends javax.swing.JFrame {
     public void setLocationRelativeTo(Component c) {
         super.setLocationRelativeTo(c); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
-    
+
     public Home(String userEmail) {
         initComponents();
         setLocationRelativeTo(null);
-        defaultColor = new Color(25,118,211);
-        clickedColor = new Color(0,51,153);
+        defaultColor = new Color(25, 118, 211);
+        clickedColor = new Color(0, 51, 153);
         email = userEmail;
-        if(!email.equals("admin@gmail.com")){
+        if (!email.equals("admin@gmail.com")) {
             btnDashboard.setVisible(false);
             jpDashboard.setVisible(false);
             btnProduct.setVisible(false);
@@ -54,24 +56,29 @@ public class Home extends javax.swing.JFrame {
             jpUser.setVisible(false);
             jpChart.setVisible(false);
             btnChart.setVisible(false);
+
+            jpOrder.setBackground(clickedColor);
+            btnOrder.setBackground(clickedColor);
+            Order order = new Order(email);
+            jDesktopPane.removeAll();
+            jDesktopPane.add(order).setVisible(true);
         } else {
             jpDashboard.setBackground(clickedColor);
 //            menuName.setText("DASHBOARD");
             Dashboard dashboardMenu = new Dashboard();
             jDesktopPane.removeAll();
             jDesktopPane.add(dashboardMenu).setVisible(true);
+            jpOrder.setBackground(defaultColor);
+            jpBill.setBackground(defaultColor);
         }
-            
-        
-       
+
 //        jpDashboard.setBackground(clickedColor);
-        jpOrder.setBackground(defaultColor);
-        jpBill.setBackground(defaultColor);
         jpProduct.setBackground(defaultColor);
         jpUser.setBackground(defaultColor);
         jpAccount.setBackground(defaultColor);
         jpChart.setBackground(defaultColor);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -337,6 +344,9 @@ public class Home extends javax.swing.JFrame {
 
         jpChart.setBackground(new java.awt.Color(25, 118, 211));
         jpChart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpChartMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jpChartMousePressed(evt);
             }
@@ -348,6 +358,11 @@ public class Home extends javax.swing.JFrame {
         btnChart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/popupicon/chart_30px.png"))); // NOI18N
         btnChart.setText("   THỐNG KÊ");
         btnChart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnChart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnChartMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpChartLayout = new javax.swing.GroupLayout(jpChart);
         jpChart.setLayout(jpChartLayout);
@@ -455,7 +470,7 @@ public class Home extends javax.swing.JFrame {
         jpUser.setBackground(defaultColor);
         jpAccount.setBackground(defaultColor);
         jpChart.setBackground(defaultColor);
-        
+
 //        menuName.setText("SẢN PHẨM");
     }//GEN-LAST:event_jpProductMousePressed
 
@@ -468,7 +483,7 @@ public class Home extends javax.swing.JFrame {
         jpUser.setBackground(defaultColor);
         jpAccount.setBackground(defaultColor);
         jpChart.setBackground(defaultColor);
-        
+
 //        menuName.setText("ORDER");
     }//GEN-LAST:event_jpOrderMousePressed
 
@@ -481,7 +496,7 @@ public class Home extends javax.swing.JFrame {
         jpUser.setBackground(defaultColor);
         jpAccount.setBackground(defaultColor);
         jpChart.setBackground(defaultColor);
-        
+
 //        menuName.setText("HÓA ĐƠN");
     }//GEN-LAST:event_jpBillMousePressed
 
@@ -494,7 +509,7 @@ public class Home extends javax.swing.JFrame {
         jpUser.setBackground(clickedColor);
         jpAccount.setBackground(defaultColor);
         jpChart.setBackground(defaultColor);
-        
+
 //        menuName.setText("USER");
     }//GEN-LAST:event_jpUserMousePressed
 
@@ -507,7 +522,7 @@ public class Home extends javax.swing.JFrame {
         jpUser.setBackground(defaultColor);
         jpAccount.setBackground(defaultColor);
         jpChart.setBackground(clickedColor);
-        
+
 //        menuName.setText("THỐNG KÊ");
     }//GEN-LAST:event_jpChartMousePressed
 
@@ -520,14 +535,14 @@ public class Home extends javax.swing.JFrame {
         jpUser.setBackground(defaultColor);
         jpAccount.setBackground(clickedColor);
         jpChart.setBackground(defaultColor);
-        
+
 //        menuName.setText("TÀI KHOẢN");
     }//GEN-LAST:event_jpAccountMousePressed
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
         // TODO add your handling code here:
         int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn Đăng xuất?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-        if(a == 0){
+        if (a == 0) {
             setVisible(false);
             new Login().setVisible(true);
         }
@@ -567,7 +582,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("SẢN PHẨM");
-        
+
         Product productMenu = new Product();
         jDesktopPane.removeAll();
         jDesktopPane.add(productMenu).setVisible(true);
@@ -584,7 +599,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         Dashboard dashboard = new Dashboard();
         jDesktopPane.removeAll();
         jDesktopPane.add(dashboard).setVisible(true);
@@ -597,7 +612,7 @@ public class Home extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         int a = JOptionPane.showConfirmDialog(null, "Bạn có chắc muốn thoát chương trình ?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-        if(a == 0){
+        if (a == 0) {
             System.exit(0);
         }
     }//GEN-LAST:event_jLabel1MouseClicked
@@ -613,7 +628,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         Order order = new Order(email);
         jDesktopPane.removeAll();
         jDesktopPane.add(order).setVisible(true);
@@ -631,7 +646,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         Order order = new Order(email);
         jDesktopPane.removeAll();
         jDesktopPane.add(order).setVisible(true);
@@ -648,7 +663,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         VerifyUser verifyUser = new VerifyUser();
         jDesktopPane.removeAll();
         jDesktopPane.add(verifyUser).setVisible(true);
@@ -665,7 +680,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         VerifyUser verifyUser = new VerifyUser();
         jDesktopPane.removeAll();
         jDesktopPane.add(verifyUser).setVisible(true);
@@ -682,7 +697,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         ViewBill viewBill = new ViewBill();
         jDesktopPane.removeAll();
         jDesktopPane.add(viewBill).setVisible(true);
@@ -699,7 +714,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         ViewBill viewBill = new ViewBill();
         jDesktopPane.removeAll();
         jDesktopPane.add(viewBill).setVisible(true);
@@ -717,7 +732,7 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         Account ac = new Account(email);
         jDesktopPane.removeAll();
         jDesktopPane.add(ac).setVisible(true);
@@ -735,11 +750,45 @@ public class Home extends javax.swing.JFrame {
         jpChart.setBackground(defaultColor);
 //        jpCategory.setBackground(defaultColor);
 //        menuName.setText("DASHBOARD");
-        
+
         Account ac = new Account(email);
         jDesktopPane.removeAll();
         jDesktopPane.add(ac).setVisible(true);
     }//GEN-LAST:event_jpAccountMouseClicked
+
+    private void btnChartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChartMouseClicked
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(clickedColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+
+        Chart1 c = new Chart1();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(c).setVisible(true);
+    }//GEN-LAST:event_btnChartMouseClicked
+
+    private void jpChartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpChartMouseClicked
+        // TODO add your handling code here:
+        jpDashboard.setBackground(defaultColor);
+        jpOrder.setBackground(defaultColor);
+        jpBill.setBackground(defaultColor);
+        jpProduct.setBackground(defaultColor);
+        jpUser.setBackground(defaultColor);
+        jpAccount.setBackground(defaultColor);
+        jpChart.setBackground(clickedColor);
+//        jpCategory.setBackground(defaultColor);
+//        menuName.setText("DASHBOARD");
+
+        Chart1 c = new Chart1();
+        jDesktopPane.removeAll();
+        jDesktopPane.add(c).setVisible(true);
+    }//GEN-LAST:event_jpChartMouseClicked
 
     /**
      * @param args the command line arguments
