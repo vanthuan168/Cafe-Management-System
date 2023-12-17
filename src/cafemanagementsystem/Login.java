@@ -29,10 +29,10 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
-//        btnLogin.setEnabled(false);
-        txtEmail.setText("admin@gmail.com");
-        txtPassword.setText("admin");
-         btnLogin.setEnabled(true);
+        btnLogin.setEnabled(false);
+//        txtEmail.setText("admin@gmail.com");
+//        txtPassword.setText("admin");
+//         btnLogin.setEnabled(true);
     }
     
     public void clear(){
